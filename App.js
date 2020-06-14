@@ -6,7 +6,7 @@ import { findRenderedComponentWithType } from 'react-dom/test-utils';
 //import App from "./App";
 //import "bootstrap/dist/css/bootstrap.css";
 
-class Info extends React.Component {
+class Grid extends React.Component {
   addRows(){
     console.log("Add Rows");
   }
@@ -33,5 +33,5 @@ class Info extends React.Component {
   }
 }
 
-export default Info;
+export default Grid;
 
