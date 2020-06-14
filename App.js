@@ -23,7 +23,21 @@ class Info extends React.Component {
     console.log("Remove Columns");
   }
   render() {
-    
+    const Naviheader = {
+      color: "BlueSapphire",
+      backgroundColor: "LightBlue",
+      padding: "10px",
+      fontFamily: "Monospace"
+    };
+    const Infoheader = {
+      padding: "10px",
+      fontFamily: "Monospace",
+      textAlign: "center"
+    };
+    const Body = {
+      backgroundColor: "LightGray",
+      padding: "10px",
+      fontFamily: "Monospace"
     };
 
     return<div>
