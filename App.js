@@ -11,7 +11,7 @@ class Grid extends React.Component {
     super(props);
 	
     this.state = {
-      table: [[<td>ggge</td>,<td></td>],[<td></td>,<td></td>]],
+      table: [[<td></td>,<td></td>],[<td></td>,<td></td>]],
 
     };
   }
@@ -32,7 +32,7 @@ class Grid extends React.Component {
     var row = [];
     
     if (temp.length === 0)
-      row.push(<td>aa</td>)
+      row.push(<td></td>)
 
     else
       row.push(temp[0]);
@@ -46,11 +46,12 @@ class Grid extends React.Component {
     var temp = this.state.table;
 
     if (temp.length === 0)
-      temp.push([<td>aa</td>])
+      temp.push([<td></td>])
+
     else
     {
       for (let i = 0; i < temp.length; i++)
-	    	temp[i].push(<td>bb</td>);
+	    	temp[i].push(<td></td>);
     }
 
     this.setState({table:temp});
@@ -59,10 +60,31 @@ class Grid extends React.Component {
 
   removeRows(){
     console.log("Remove Rows");
+    var temp = this.state.table;
+
+    if (temp.length === 0)
+      alert("No rows to remove");
+
+    else
+      temp.pop(<td></td>);
+
+    this.setState({table:temp});
   }
 
   removeColumns(){
     console.log("Remove Columns");
+    var temp = this.state.table;
+
+    if (temp.length === 0)
+      alert("No columns to remove");
+
+    else
+    {  
+      for (let i = 0; i < temp.length; i++)
+        temp[i].pop(<td></td>);
+    }
+
+    this.setState({table:temp});
   }
 
   fillAllUncolored(){
@@ -111,5 +133,4 @@ ReactDOM.render(
 );
 
 export default Grid;
-
 
