@@ -79,17 +79,17 @@ class Grid extends React.Component {
 		
    if (temp.length === 0)
    {
-      const temprefs = React.createRef();
-      row.push(<Cell ref={temprefs}/>); 
-      newrefs.push(temprefs);
+      const tempref = React.createRef();
+      row.push(<Cell ref={tempref}/>); 
+      newrefs.push(tempref);
    }
    else
    {
 	 for (let i = 0; i < temp[0].length; i++)
 	 {
-		 const temprefs  = React.createRef();
-		 row.push(<Cell ref={temprefs }/>);
-		 newrefs.push(temprefs );
+		 const tempref  = React.createRef();
+		 row.push(<Cell ref={tempref}/>);
+		 newrefs.push(tempref);
 	 }
    }
    
@@ -109,23 +109,23 @@ class Grid extends React.Component {
 	
     if (temp.length === 0)
     {
-      const temprefs  = React.createRef();
-      temp.push([<Cell ref={temprefs }/>]);
-      newrefs.push([temprefs ]);
+      const tempref  = React.createRef();
+      temp.push([<Cell ref={tempref}/>]);
+      newrefs.push([tempref]);
       temprefs .push(newrefs);
     }
     else
     {
       for (let i = 0; i < temp.length; i++)
       {
-        const temprefs  = React.createRef();
-        temp[i].push(<Cell ref={temprefs }/>);
-        temprefs [i].push(temprefs );
+        const tempref  = React.createRef();
+        temp[i].push(<Cell ref={tempref}/>);
+        temprefs[i].push(tempref);
       }
 
     }
 	
-    this.setState({reflist:temprefs });
+    this.setState({reflist:temprefs});
     this.setState({table:temp});
 
   }
@@ -170,14 +170,14 @@ class Grid extends React.Component {
   fillAllUncolored(){
     console.log("Fill All Uncolored");
     	
-    var reefs = this.state.reflist;
-    console.log(reefs);
+    var temprefs = this.state.reflist;
+    console.log(temprefs);
     console.log(this.state.table);
-    for (let i = 0; i < reefs.length; i++)
+    for (let i = 0; i < temprefs.length; i++)
     {
-      for (let j = 0; j < reefs[i].length; j++)
+      for (let j = 0; j < temprefs[i].length; j++)
       {
-        reefs[i][j].current.fillUncolored();
+        temprefs[i][j].current.fillUncolored();
       }
     }
   }
@@ -185,14 +185,14 @@ class Grid extends React.Component {
   fillAll(){
     console.log("Fill All");
 	
-    var reefs = this.state.reflist;
-    console.log(reefs);
+    var temprefs = this.state.reflist;
+    console.log(temprefs);
     console.log(this.state.table);
-    for (let i = 0; i < reefs.length; i++)
+    for (let i = 0; i < temprefs.length; i++)
     {
-      for (let j = 0; j < reefs[i].length; j++)
+      for (let j = 0; j < temprefs[i].length; j++)
       {
-        reefs[i][j].current.fillCell();
+        temprefs[i][j].current.fillCell();
       }
     }
   }
