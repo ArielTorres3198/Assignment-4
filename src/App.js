@@ -74,58 +74,58 @@ class Grid extends React.Component {
     console.log("Add Rows");
     var temp = this.state.table;
     var row = [];
-    var reefs = this.state.reflist;
+    var temprefs = this.state.reflist;
     var newrefs = [];
 		
    if (temp.length === 0)
    {
-      const reef = React.createRef();
-      row.push(<Cell ref={reef}/>); 
-      newrefs.push(reef);
+      const temprefs = React.createRef();
+      row.push(<Cell ref={temprefs}/>); 
+      newrefs.push(temprefs);
    }
    else
    {
 	 for (let i = 0; i < temp[0].length; i++)
 	 {
-		 const reef = React.createRef();
-		 row.push(<Cell ref={reef}/>);
-		 newrefs.push(reef);
+		 const temprefs  = React.createRef();
+		 row.push(<Cell ref={temprefs }/>);
+		 newrefs.push(temprefs );
 	 }
    }
    
     temp.push(row);
-    reefs.push(newrefs);
+    temprefs .push(newrefs);
     this.setState({table:temp});
-    this.setState({reflist:reefs});
+    this.setState({reflist:temprefs });
   }
 
   addColumns(){
     console.log("Add Columns");
     var temp = this.state.table;
 
-  	var reefs = this.state.reflist;
+  	var temprefs  = this.state.reflist;
 	  var newrefs = [];
 	
 	
     if (temp.length === 0)
     {
-      const reef = React.createRef();
-      temp.push([<Cell ref={reef}/>]);
-      newrefs.push([reef]);
-      reefs.push(newrefs);
+      const temprefs  = React.createRef();
+      temp.push([<Cell ref={temprefs }/>]);
+      newrefs.push([temprefs ]);
+      temprefs .push(newrefs);
     }
     else
     {
       for (let i = 0; i < temp.length; i++)
       {
-        const reef = React.createRef();
-        temp[i].push(<Cell ref={reef}/>);
-        reefs[i].push(reef);
+        const temprefs  = React.createRef();
+        temp[i].push(<Cell ref={temprefs }/>);
+        temprefs [i].push(temprefs );
       }
 
     }
 	
-    this.setState({reflist:reefs});
+    this.setState({reflist:temprefs });
     this.setState({table:temp});
 
   }
