@@ -140,7 +140,7 @@ class Grid extends React.Component {
 
     else
     {
-      temp.pop(<td></td>)
+      temp.pop();
       tempref.pop();
     }
 
@@ -159,7 +159,7 @@ class Grid extends React.Component {
     {  
       for (let i = 0; i < temp.length; i++)
       {
-        temp[i].pop(<td></td>)
+        temp[i].pop();
         tempref[i].pop();
       }
     }
