@@ -7,6 +7,8 @@ import "./index.css";
 //import App from "./App";
 //import "bootstrap/dist/css/bootstrap.css";
 
+//Global variable makes it easier to assign 
+//background colors to each cell
 var color = "white";
 
 class Cell extends React.Component {
@@ -23,15 +25,15 @@ class Cell extends React.Component {
   })
  } 
 
-fillUncolored()
-{
-  console.log("Original Color: ", this.state.bgColor);
-  if (this.state.bgColor == "white" || this.state.bgColor == "")
-  {
-    this.fillCell();
-    console.log("New Color: ", this.state.bgColor);
-  }
-}
+ fillUncolored()
+ {
+   console.log("Original Color: ", this.state.bgColor);
+   if (this.state.bgColor == "white" || this.state.bgColor == "")
+   {
+     this.fillCell();
+     console.log("New Color: ", this.state.bgColor);
+   }
+ }
 
   render() {
     return(
@@ -46,10 +48,9 @@ class Grid extends React.Component {
 
     //Base table
     this.state = {
-      table: [],
-      bgColor: "",
-      value: "select",
-	    reflist:[],
+      table: [], //Table array
+      bgColor: "", //Background cell color
+      reflist:[], //Access to class Cell tds 
     };
   }
 
@@ -64,7 +65,8 @@ class Grid extends React.Component {
     return trs;
   }
 
-  handlePeriodChange(selVal) {
+  //Color assigning
+  colorChange(selVal) {
     color = selVal;
   }
 
@@ -73,25 +75,23 @@ class Grid extends React.Component {
     var temp = this.state.table;
     var row = [];
     var reefs = this.state.reflist;
-	  var newrefs = [];
-	
-	
-    
+    var newrefs = [];
+		
    if (temp.length === 0)
-	 {
-		const reef = React.createRef();
-      row.push(<Cell ref={reef}/>);
-	    newrefs.push(reef);
-	 }
+   {
+      const reef = React.createRef();
+      row.push(<Cell ref={reef}/>); 
+      newrefs.push(reef);
+   }
    else
+   {
+	 for (let i = 0; i < temp[0].length; i++)
 	 {
-		 for (let i = 0; i < temp[0].length; i++)
-		 {
-			 const reef = React.createRef();
-			 row.push(<Cell ref={reef}/>);
-			 newrefs.push(reef);
-		 }
+		 const reef = React.createRef();
+		 row.push(<Cell ref={reef}/>);
+		 newrefs.push(reef);
 	 }
+   }
    
     temp.push(row);
     reefs.push(newrefs);
@@ -108,12 +108,12 @@ class Grid extends React.Component {
 	
 	
     if (temp.length === 0)
-  	{
+    {
       const reef = React.createRef();
       temp.push([<Cell ref={reef}/>]);
       newrefs.push([reef]);
       reefs.push(newrefs);
-  	}
+    }
     else
     {
       for (let i = 0; i < temp.length; i++)
@@ -125,7 +125,7 @@ class Grid extends React.Component {
 
     }
 	
-  	this.setState({reflist:reefs});
+    this.setState({reflist:reefs});
     this.setState({table:temp});
 
   }
@@ -174,12 +174,12 @@ class Grid extends React.Component {
     console.log(reefs);
     console.log(this.state.table);
     for (let i = 0; i < reefs.length; i++)
-  	{
+    {
       for (let j = 0; j < reefs[i].length; j++)
       {
         reefs[i][j].current.fillUncolored();
       }
-	  }
+    }
   }
 
   fillAll(){
@@ -189,12 +189,12 @@ class Grid extends React.Component {
     console.log(reefs);
     console.log(this.state.table);
     for (let i = 0; i < reefs.length; i++)
-  	{
+    {
       for (let j = 0; j < reefs[i].length; j++)
       {
         reefs[i][j].current.fillCell();
       }
-	  }
+    }
   }
 
   clear(){
@@ -219,7 +219,7 @@ class Grid extends React.Component {
       <button onClick={() => this.fillAllUncolored()}>Fill All Uncolored</button>
       <button onClick={() => this.fillAll()}>Fill All</button>
       <button onClick={() => this.clear()}>Clear</button>
-      <select onChange={(val) => this.handlePeriodChange(val.target.value)}>
+      <select onChange={(val) => this.colorChange(val.target.value)}>
           <option hidden>Select Color</option>
           <option value = "red">Red</option>
           <option value = "blue">Blue</option>
