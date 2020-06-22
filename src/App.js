@@ -11,17 +11,17 @@ class Cell extends React.Component {
     super(props);
     this.state = {
       bgColor: "",
-	  testBool: false,
+      testBool: false,
     };
   }
 
 isPressed(){
     this.setState({bgColor: color});
     this.setState({testBool: true});
-	/*if (this.state.testBool !== true)
+    /*if (this.state.testBool !== true)
 	{
     	alert("Not true");
-	}*/
+    }*/
  }
 
  isNotPressed(){
@@ -48,11 +48,11 @@ isPressed(){
   render() {
     return(
     <td 
-		style ={{backgroundColor: this.state.bgColor}} 
-		onMouseOver={() => this.fillCell()}
-		onMouseDown={() => this.isPressed()}
-		onMouseUp={() => this.isNotPressed()}
-	></td>
+	style ={{backgroundColor: this.state.bgColor}} 
+	onMouseOver={() => this.fillCell()}
+	onMouseDown={() => this.isPressed()}
+	onMouseUp={() => this.isNotPressed()}
+    ></td>
     );
   }
 }
