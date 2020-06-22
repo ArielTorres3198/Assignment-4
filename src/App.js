@@ -23,13 +23,14 @@ isPressed(){
 
  isNotPressed(){
     this.setState({testBool: false});
+    console.log("Pressed: ", this.state.testBool);
  }
 
  dragFill(){
-	if (this.state.testBool === true)
-	{
-   		this.fillCell();
-	}
+    if (this.state.testBool === true)
+    {
+   	this.fillCell();
+    }
  } 
 
  fillCell(){
@@ -49,12 +50,12 @@ isPressed(){
   render() {
     return(
     <td 
-		style ={{backgroundColor: this.state.bgColor}} 
-		onMouseDown={() => this.fillCell()}
-		onMouseOver={() => this.dragFill()}
-		onMouseDown={() => this.isPressed()}
-		onMouseUp={() => this.isNotPressed()}
-	></td>
+	style ={{backgroundColor: this.state.bgColor}} 
+	onMouseDown={() => this.fillCell()}
+	onMouseOver={() => this.dragFill()}
+	onMouseDown={() => this.isPressed()}
+	onMouseUp={() => this.isNotPressed()}
+    ></td>
     );
   }
 }
