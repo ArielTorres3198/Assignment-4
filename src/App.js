@@ -10,31 +10,30 @@ class Cell extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      bgColor: "",
-      testBool: false,
+    bgColor: "",
+	  testBool: false,
     };
   }
 
 isPressed(){
     this.fillCell();
     this.setState({testBool: true});
-    console.log("Pressed: ", this.state.testBool);
+	  console.log("Pressed: ", this.state.testBool);
  }
 
  isNotPressed(){
-    this.setState({testBool: false});
-    console.log("Pressed: ", this.state.testBool);
+	  this.setState({testBool: false});
  }
 
  dragFill(){
-    if (this.state.testBool === true)
-    {
-   	this.fillCell();
-    }
+	if (this.state.testBool === true)
+	{
+   		this.fillCell();
+	}
  } 
 
  fillCell(){
-     this.setState({bgColor: color});
+   	this.setState({bgColor: color});
  } 
 
  fillUncolored()
@@ -49,13 +48,13 @@ isPressed(){
 
   render() {
     return(
-    <td 
-	style ={{backgroundColor: this.state.bgColor}} 
-	onMouseDown={() => this.fillCell()}
-	onMouseOver={() => this.dragFill()}
-	onMouseDown={() => this.isPressed()}
-	onMouseUp={() => this.isNotPressed()}
-    ></td>
+      <td 
+		    style ={{backgroundColor: this.state.bgColor}} 
+		    onMouseDown={() => this.fillCell()}
+		    onMouseOver={() => this.dragFill()}
+		    onMouseDown={() => this.isPressed()}
+		    onMouseUp={() => this.isNotPressed()}
+	    ></td>
     );
   }
 }
