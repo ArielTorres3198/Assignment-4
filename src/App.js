@@ -1,10 +1,6 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import ReactDOM from "react-dom";
-import { findRenderedComponentWithType } from 'react-dom/test-utils';
 import "./index.css";
-//import App from "./App";
-//import "bootstrap/dist/css/bootstrap.css";
 
 //Global variable makes it easier to assign 
 //background colors to each cell
@@ -14,20 +10,36 @@ class Cell extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      bgColor: "",
+    bgColor: "",
+	  testBool: false,
     };
   }
 
+isPressed(){
+    this.fillCell();
+    this.setState({testBool: true});
+	  console.log("Pressed: ", this.state.testBool);
+ }
+
+ isNotPressed(){
+	  this.setState({testBool: false});
+ }
+
+ dragFill(){
+	if (this.state.testBool === true)
+	{
+   		this.fillCell();
+	}
+ } 
+
  fillCell(){
-  this.setState({
-    bgColor: color
-  })
+   	this.setState({bgColor: color});
  } 
 
  fillUncolored()
  {
    console.log("Original Color: ", this.state.bgColor);
-   if (this.state.bgColor == "white" || this.state.bgColor == "")
+   if (this.state.bgColor === "white" || this.state.bgColor === "")
    {
      this.fillCell();
      console.log("New Color: ", this.state.bgColor);
@@ -36,7 +48,13 @@ class Cell extends React.Component {
 
   render() {
     return(
-    <td style ={{backgroundColor: this.state.bgColor}} onClick={() => this.fillCell()}></td>
+      <td 
+		    style ={{backgroundColor: this.state.bgColor}} 
+		    onMouseDown={() => this.fillCell()}
+		    onMouseOver={() => this.dragFill()}
+		    onMouseDown={() => this.isPressed()}
+		    onMouseUp={() => this.isNotPressed()}
+	    ></td>
     );
   }
 }
@@ -93,7 +111,7 @@ class Grid extends React.Component {
    }
    
     temp.push(row);
-    temprefs .push(newrefs);
+    temprefs.push(newrefs);
     this.setState({table:temp});
     this.setState({reflist:temprefs });
   }
@@ -111,7 +129,7 @@ class Grid extends React.Component {
       const tempref  = React.createRef();
       temp.push([<Cell ref={tempref}/>]);
       newrefs.push([tempref]);
-      temprefs .push(newrefs);
+      temprefs.push(newrefs);
     }
     else
     {
@@ -204,11 +222,6 @@ class Grid extends React.Component {
   }
 
   render() {
-
-    const cellcolor = {
-      color: "white",
-      backgroundColor: "white"
-    };
     return(
 	  <div>
       <button onClick={() => this.addRows()}>Add Rows</button>
@@ -241,4 +254,3 @@ ReactDOM.render(
 );
 
 export default Grid;
-
