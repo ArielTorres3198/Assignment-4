@@ -12,8 +12,46 @@ code {
     monospace;
 }
 
-td{
-  height: 30px;
-  width: 30px;
-  border: 1px solid;
+body {
+    margin: 0;
 }
+
+table {
+    padding: 5% 5% 5% 20%;
+}
+
+td {
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    width: 10%;
+    position: fixed;
+    border-right: 1px solid black;
+    height: 100vh;
+    padding: 0 3rem;
+}   
+
+.buttons > * {
+    width: 100%;
+    max-height: 5%;
+    margin: 0.5rem;
+}
+
+button, select {
+    border: 1px solid red;
+    border-radius: 10px;
+    background-color: white;
+}
+
+main {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}   
