@@ -5,36 +5,26 @@ import "./index.css";
 //Global variable makes it easier to assign 
 //background colors to each cell
 var color = "white";
+var testB = false;
 
 class Cell extends React.Component {
   constructor(props){
     super(props);
     this.state = {
     bgColor: "",
-    testBool: false,
     };
   }
 
- isPressed(){
-    this.fillCell();
-    this.setState({testBool: true});
-    console.log("Pressed Down: ", this.state.testBool);
- }
-
- isNotPressed(){
-    this.setState({testBool: false});
-    console.log("Pressed Up: ", this.state.testBool);
- }
-
- dragFill(){
-    if (this.state.testBool === true)
-    {
-   	this.fillCell();
-    }
+ fillCell(){
+   	this.setState({bgColor: color});
  } 
 
- fillCell(){
-    this.setState({bgColor: color});
+ dragFill(){
+	console.log("Drag: ", testB);
+	if (testB === true)
+	{
+   		this.fillCell();
+	}
  } 
 
  fillUncolored()
@@ -50,12 +40,10 @@ class Cell extends React.Component {
   render() {
     return(
       <td 
-	style ={{backgroundColor: this.state.bgColor}} 
-	onMouseDown={() => this.fillCell()}
-	onMouseOver={() => this.dragFill()}
-	onMouseDown={() => this.isPressed()}
-	onMouseUp={() => this.isNotPressed()}
-      ></td>
+		    style ={{backgroundColor: this.state.bgColor}} 
+		    onMouseDown={() => this.fillCell()}
+			onMouseOver={() => this.dragFill()}
+	    ></td>
     );
   }
 }
@@ -222,6 +210,16 @@ class Grid extends React.Component {
     this.setState({table:temp});
   }
 
+ isPressed(){
+	testB = true;
+	console.log("DOWN: ", testB);
+ }
+
+ isNotPressed(){
+	testB = false;
+	console.log("UP: ", testB);
+ }
+
   render() {
     return(
 	  <div>
@@ -238,8 +236,11 @@ class Grid extends React.Component {
           <option value = "blue">Blue</option>
           <option value = "green">Green</option>
           <option value = "yellow">Yellow</option>
+		  <option value = "white">White</option>
       </select>
-      <table>
+      <table 
+		onMouseDown={() => this.isPressed()}
+		onMouseUp={() => this.isNotPressed()}>
 	  {this.returnTrs()}
       </table>
     </div>
