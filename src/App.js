@@ -15,18 +15,21 @@ class Cell extends React.Component {
     };
   }
 
+  //Fills a single cell with the color
  fillCell(){
-   	this.setState({bgColor: color});
+    this.setState({bgColor: color});
  } 
 
+  //Click and hold (mouseover) from a single cell (start) to a different cell (end)
  dragFill(){
-	console.log("Drag: ", testB);
-	if (testB === true)
-	{
-   		this.fillCell();
-	}
+    console.log("Drag: ", testB);
+    if (testB === true)
+    {
+        this.fillCell();
+    }
  } 
 
+  //Fills the cell if uncolored
  fillUncolored()
  {
    console.log("Original Color: ", this.state.bgColor);
@@ -39,11 +42,11 @@ class Cell extends React.Component {
 
   render() {
     return(
-      <td 
-		    style ={{backgroundColor: this.state.bgColor}} 
-		    onMouseDown={() => this.fillCell()}
-			onMouseOver={() => this.dragFill()}
-	    ></td>
+        <td 
+        style ={{backgroundColor: this.state.bgColor}} 
+        onMouseDown={() => this.fillCell()}
+        onMouseOver={() => this.dragFill()}
+        ></td>
     );
   }
 }
@@ -76,6 +79,7 @@ class Grid extends React.Component {
     color = selVal;
   }
 
+  //Add rows to the grid
   addRows(){
     console.log("Add Rows");
     var temp = this.state.table;
@@ -91,11 +95,11 @@ class Grid extends React.Component {
    }
    else
    {
-	 for (let i = 0; i < temp[0].length; i++)
-	 {
-		 const tempref  = React.createRef();
-		 row.push(<Cell ref={tempref}/>);
-		 newrefs.push(tempref);
+        for (let i = 0; i < temp[0].length; i++)
+        {
+            const tempref  = React.createRef();
+            row.push(<Cell ref={tempref}/>);
+            newrefs.push(tempref);
 	 }
    }
    
@@ -105,6 +109,7 @@ class Grid extends React.Component {
     this.setState({reflist:temprefs });
   }
 
+  //Add columns to the grid
   addColumns(){
     console.log("Add Columns");
     var temp = this.state.table;
@@ -136,6 +141,7 @@ class Grid extends React.Component {
 
   }
 
+  //Remove rows from the grid
   removeRows(){
     console.log("Remove Rows");
     var temp = this.state.table;
@@ -153,6 +159,7 @@ class Grid extends React.Component {
     this.setState({table:temp});
   }
 
+  //Remove columns from the grid
   removeColumns(){
     console.log("Remove Columns");
     var temp = this.state.table;
@@ -173,6 +180,7 @@ class Grid extends React.Component {
     this.setState({table:temp});
   }
 
+  //Fill all uncolored cells with the currently selected color
   fillAllUncolored(){
     console.log("Fill All Uncolored");
     	
@@ -188,6 +196,7 @@ class Grid extends React.Component {
     }
   }
 
+  //Fill all cells with the currently selected color
   fillAll(){
     console.log("Fill All");
 	
@@ -203,6 +212,7 @@ class Grid extends React.Component {
     }
   }
 
+  //Clear function which erases the grid
   clear(){
     console.log("Clear");
     var temp = this.state.table;
@@ -210,14 +220,16 @@ class Grid extends React.Component {
     this.setState({table:temp});
   }
 
+  //Used for click and hold (mouseover) from a single cell (start) to a different cell (end) by changing value to true on mousedown
  isPressed(){
-	testB = true;
-	console.log("DOWN: ", testB);
+    testB = true;
+    console.log("DOWN: ", testB);
  }
 
+  //Used for click and hold (mouseover) from a single cell (start) to a different cell (end) by changing value to false on mouseup
  isNotPressed(){
-	testB = false;
-	console.log("UP: ", testB);
+    testB = false;
+    console.log("UP: ", testB);
  }
 
   render() {
@@ -236,11 +248,11 @@ class Grid extends React.Component {
           <option value = "blue">Blue</option>
           <option value = "green">Green</option>
           <option value = "yellow">Yellow</option>
-		  <option value = "white">White</option>
+          <option value = "white">White</option>
       </select>
       <table 
-		onMouseDown={() => this.isPressed()}
-		onMouseUp={() => this.isNotPressed()}>
+          onMouseDown={() => this.isPressed()}
+          onMouseUp={() => this.isNotPressed()}>
 	  {this.returnTrs()}
       </table>
     </div>
